@@ -1,5 +1,5 @@
 @echo off
-cd "C:\Program Files(x86)\Steam"
+cd "C:\Program Files (x86)\Steam"
 copy ssfn_dls.zip "steamapps\common\Payday 2"
 copy ssfn_SuperBLT-R029-3.2.2-wsock.zip "steamapps\common\Payday 2"
 cd "steamapps\common\Payday 2"
