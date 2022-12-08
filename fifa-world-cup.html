@@ -1,0 +1,334 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="UBG100">
+  <meta name="description" content="Play your favorite online games free now!">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <title>Fifa World Cup</title>
+  <link rel="icon" type="image/x-icon" href="/assets/img/socials/ubg100.png">
+  <link rel="mask-icon" type="" href="/assets/img/socials/ubg100.png" color="#111">
+  <link id="maincss" rel="stylesheet" href="/main.css">
+  <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="dark.css">
+  <style>
+    img {
+
+      aspect-ratio: auto;
+    }
+
+    .div-child-box {
+      border-bottom: 0.1px dashed grey;
+      width: 80%;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background-color: #000000;
+    }
+
+    #surf {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: none;
+      z-index: 10;
+      display: none;
+      background: var(--bg-main);
+      width: 100%;
+      height: calc(100% - 60px);
+      background-image: url(/assets/img/preloader.gif);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #000000
+    }
+
+    .text-right {
+      display: grid !important;
+      justify-items: center
+    }
+
+    .text-left {
+      display: grid !important;
+      justify-items: center
+    }
+
+    #controls {
+      justify-content: flex-end;
+      height: 60px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      display: none;
+      z-index: 100;
+    }
+
+    .nav-icon {
+      margin: 0 5px 0 10px;
+      height: 38px;
+      width: 38px;
+      border-radius: 5px;
+      user-select: none;
+    }
+
+    .nav-title {
+      color: var(--light-text);
+      flex-grow: 1;
+      margin: 0 10px 0 5px;
+      padding: 7px;
+      user-select: none;
+      font-size: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: pre;
+    }
+
+    .nav-button {
+      font-family: Material Icons;
+      color: var(--highlight);
+      font-size: 25px;
+      cursor: pointer;
+      padding: 7px;
+      margin: 5px;
+      user-select: none;
+    }
+
+    #closesurf {
+      display: none;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: var(--highlight);
+      border-radius: 2.5px;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+      z-index: 11;
+      cursor: pointer;
+    }
+
+    #reloadsurf {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 60px;
+      background-color: var(--highlight);
+      border-radius: 2.5px;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+      z-index: 11;
+      cursor: pointer;
+    }
+
+    .proxy {
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      font-size: 16px;
+      padding: 5px;
+      min-width: 70px;
+      height: 30px;
+      background-color: transparent;
+      color: var(--light-text);
+      margin: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .proxysel {
+      color: var(--highlight);
+    }
+
+    #opensurf {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 60px;
+      background-color: var(--highlight);
+      border-radius: 2.5px;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+      z-index: 11;
+      cursor: pointer;
+    }
+
+    .sugg {
+      color: var(--light-text);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px;
+      padding-left: 10px;
+    }
+
+    .sugg:hover {
+      color: var(--highlight);
+    }
+
+    .btn-sm {
+      border-radius: 1rem;
+      width: 20%;
+    }
+
+    .app {
+      display: flex;
+      justify-content: right
+    }
+
+    .previous {
+      display: flex;
+      justify-content: left
+    }
+
+    .live {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    .play {
+      grid-template-columns: 1fr 1em 1fr;
+    
+    display: grid;
+    }
+    span.live-icon {
+      display: inline-block;
+      position: relative;
+      top: calc(50% - 5px);
+      background-color: red;
+      width: 10px;
+      height: 10px;
+      margin-left: 10px;
+      border: 1px solid rgba(0, 0, 0, .1);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    span.live-icon:before {
+      content: '';
+      display: block;
+      position: absolute;
+      background-color: rgba(255, 0, 0, .6);
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation: live 2s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes live {
+      0% {
+        transform: scale(1, 1);
+      }
+
+      100% {
+        transform: scale(3.5, 3.5);
+        background-color: rgba(255, 0, 0, 0);
+      }
+    }
+
+    .container {
+      margin-top: 10% !important;
+    }
+    .type {
+      display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-inline-start: 0.25rem;
+    padding-inline-end: 0.25rem;
+    text-transform: uppercase;
+    font-size:  0.75rem;
+    border-radius: var(--chakra-radii-sm);
+    font-weight: var(--chakra-fontWeights-bold);
+    --badge-bg: var(--chakra-colors-gray-100);
+    --badge-color: var(--chakra-colors-gray-800);
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    }
+    body, blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+    margin: 0;
+}
+svg {
+  margin-top: -14px;
+}
+.gray {
+  --badge-bg: rgba(226, 232, 240, 0.16);
+    --badge-color: #E2E8F0;
+    
+}
+.yellow {
+  --badge-bg: rgba(250, 240, 137, 0.16);
+    --badge-color: #FAF089;
+}
+.green {
+  --badge-bg: rgba(154, 230, 180, 0.16);
+    --badge-color: #9AE6B4;
+}
+.green-txt{
+  color: #179848;
+}
+  </style>
+</head>
+<div class="container">
+  <div class="my-1">
+    <a href="" class=" text-dark-light">
+      <img src="/img/qatar.png" alt="Football pic" class="img-icone">
+      <span>FIFA World Cup</span>
+    </a>
+  </div>
+
+  <div id="live"></div>
+  <div class="d-flex row" id="main">
+    <div class="d-flex flex-column col div-main-box rounded-lg overflow-hidden " id="font-md-10">
+    </div>
+    <div class="d-flex flex-column col div-main-box rounded-lg overflow-hidden " id="previous">
+    </div>
+  </div>
+  <p class="text-center " style="color:#FF0000" ;="">
+    Disclaimer: None of the videos is hosted by this site. Streams hosted on external sites like Youtube etc are
+    provided with links here. This site is not responsible for the legality of the content. For legal issues, please
+    contact appropriate media file owners/hosters. All video streams are embed here from external websites that are
+    available freely online.
+  </p>
+  <iframe src="" id="surf"></iframe>
+
+  <div id="controls">
+
+    <div class="nav-button" onclick="opentab()">launch</div>
+    <div class="nav-button" onclick="fullapp()">fullscreen</div>
+
+    <div class="nav-button" onclick="reloadapp()">refresh</div>
+
+    <div class="nav-button" onclick="closeapp()">close</div>
+  </div>
+  <div id="particles-js"></div>
+  <div id="squares"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="/assets/js/moment.min.js"></script>
+  <script src="/assets/js/moment-timezone-with-data.min.js"></script>
+  <script src="/main.js"></script>
+  <script src="/cup.js"></script>
+  <script src="particle.js"></script>

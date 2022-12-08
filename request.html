@@ -1,0 +1,83 @@
+<div class="modal-header">
+  <h2 class="text-3xl font-semibold text-center text-gray-200 dark:text-white">Game Request</h2>
+      
+</div>
+<form id="request-game" method="POST" class="form-container" action="https://script.google.com/macros/s/AKfycbzc4UgrVIBGXxaFoB2R-K53qH5lAM6x4xWAGaakuW9IvvkFCb_Es-N6xR-Sy31du6b6/exec"><br>
+<div class="modal-body">
+  
+
+  <div class="items-center -mx-2 md:flex">
+    <label  class="text-center block mb-2 text-sm font-medium text-gray-200">Type Of Game<span class="text-red-500">*</span></label>
+  <div class="w-full mx-2 mt-4 md:mt-0 switch-field" >
+     <input onclick="check(this)"  type="radio" id="unknown" name="gameType" value="unknown" checked/>
+          <label for="unknown">Unknown</label>
+          <input onchange="check(this)" type="radio" id="emulator" name="gameType" value="emulator" />
+          <label for="emulator">Emulator</label>
+          <input onclick="check(this)"  type="radio" id="flash" name="gameType" value="flash" />
+          <label for="flash">Flash</label>
+    <input onclick="check(this)"  type="radio" id="html" name="gameType" value="html" />
+          <label for="html">HTML</label>
+    <input onclick="check(this)"  type="radio" id="webgl" name="gameType" value="webgl" />
+          <label for="webgl">WebGL</label>
+      </div>
+    </div><br>
+     <div class="items-center -mx-2 md:flex">
+      <div class="w-full mx-2">
+      <label class="block mb-2 text-sm font-medium text-gray-200">Game Name<span class="text-red-500">*</span></label>
+      <input name="gameName" style="width: 200px;" class="block w-full px-4 py-2 border rounded-md bg-gray-800 text-gray-300 border-gray-600 focus:ring-blue-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" type="text" required>
+      </div>
+      <div id="emulatorQuestion" style="display: none;"class="w-full mx-2  md:mt-0">
+      <label class="block mb-2 text-sm font-medium text-gray-200">Platform<span class="text-red-500">*</span></label>
+      <select id="select" name="platform" class="block w-full px-4 py-2 border rounded-md bg-gray-800 text-gray-300 border-gray-600 focus:ring-blue-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" required>
+      <option value="gba">GBA</option>
+      <option value="nes">NES</option>
+      <option value="virtual boy">Virtual Boy</option>
+      <option value="game boy">Game Boy</option>
+      <option value="snes">SNES</option>
+        <option value="ds">DS</option>
+        <option value="n64">N64</option>
+        <option value="master">Master System</option>
+        
+        <option value="genesis">Genesis</option>
+        <option value="gear">Game Gear</option>
+        <option value="saturn">Saturn</option>
+        <option value="32X">32X</option>
+        <option value="cd">CD</option>
+        <option value="jaguar">Jaguar</option>
+        <option value="lynx">Lynx</option>
+        <option value="78">7800</option>
+        <option value="26">2600</option>
+        <option value="msx">MSX</option>
+        <option value="3do">3DO</option>
+        <option value="neo geo">Neo Geo Pocket</option>
+      </select>
+      </div>
+      </div><br>
+  <div id="link" class="w-full mt-4 md:mt-0">
+  <label class="block mb-2 text-sm font-medium text-gray-200">Game Link
+</label>
+  <input name="url" class="block w-full px-4 py-2 border rounded-md bg-gray-800 text-gray-300 border-gray-600 focus:ring-blue-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" type="text">
+  </div>
+  
+     
+  
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="button" type="submit" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+<script>
+  $(function(){
+    $('#request-game').on('submit', function(e){
+        console.log('submit')
+      e.preventDefault();
+      const data = new FormData(form);
+    const action = e.target.action;
+    fetch(action, {
+      method: 'POST',
+      body: data,
+    })
+    });
+});
+</script>
